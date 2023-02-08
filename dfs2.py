@@ -14,12 +14,35 @@ def DFS2(G, node1, node2):
             marked[current_node] = True
             for node in G.adj[current_node]:
                 tracking[node] = current_node #Sets the value as parent, and the parent as value 
+                print(tracking)
                 if node == node2:
                     L = [node]
                     temp_node = node
-                    while temp_node != node1:
+                    while temp_node != tracking.get(node1):
+                        print(tracking.get(temp_node))
                         temp_node = tracking.get(temp_node)
                         L = [temp_node] + L
+                    L = [node1] + L
                     return L
                 S.append(node)
     return []
+"""
+g = graph.Graph(13)
+g.add_edge(2, 1)
+g.add_edge(2, 3)
+g.add_edge(2, 4)
+g.add_edge(1, 3)
+g.add_edge(1, 9)
+g.add_edge(1, 10)
+g.add_edge(3, 4)
+g.add_edge(3, 5)
+g.add_edge(4, 5)
+g.add_edge(4, 6)
+g.add_edge(5, 8)
+g.add_edge(6, 7)
+g.add_edge(9, 11)
+g.add_edge(9, 12)
+g.add_edge(10, 13)
+g.add_edge(11, 12)
+print(DFS2(g, 2, 0))
+"""
