@@ -1,6 +1,5 @@
 from collections import deque
 import graph
-
 # ------ DFS2 -----------------
 def DFS2(G, node1, node2):
     if node1 == node2: # Edge Case, node1 is not connected to itself
