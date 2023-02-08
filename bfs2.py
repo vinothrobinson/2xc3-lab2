@@ -22,10 +22,8 @@ def BFS2(G, node1, node2):
                 marked[node] = True
 
     final_list = deque([])
-    found_path = False
     current_node = node2
-    num = 0
-    while found_path == False:
+    while True:
         for key in path_dict.keys():
             if current_node in path_dict[key]:
                 final_list.appendleft(current_node)
