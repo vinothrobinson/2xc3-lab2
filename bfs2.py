@@ -27,13 +27,12 @@ def BFS2(G, node1, node2):
         for list in path_dict.values():
             if node2 in list:
                 final_list.appendleft(node2)
-                key = findKey(path_dict, node2)
+                key = findKey(path_dict, list)
             else:
-                found_path = True
-    return []
+                return final_list
 
 def findKey(path_dict, node):
-    pass
+
 
 '''
 t = ("hi","ho")
