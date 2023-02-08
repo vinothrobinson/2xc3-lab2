@@ -1,4 +1,5 @@
 from collections import deque
+import random
 
 #Undirected graph using an adjacency list
 class Graph:
@@ -22,8 +23,8 @@ class Graph:
             self.adj[node1].append(node2)
             self.adj[node2].append(node1)
 
-    def number_of_nodes():
-        return len()
+    def number_of_nodes(self):
+        return len(self.adj)
 
 
 #Breadth First Search
@@ -59,3 +60,17 @@ def DFS(G, node1, node2):
                     return True
                 S.append(node)
     return False
+
+def create_random_graph(i, j):
+    G = Graph(i)
+    for _ in range(j):
+        node1, node2 = random.randint(0, i-1), random.randint(0, i-1)
+        while node2 in G.adjacent_nodes(node1):
+            node1, node2 = random.randint(0, i-1), random.randint(0, i-1)
+        G.add_edge(node1, node2)
+    return G
+
+
+G = create_random_graph(10, 5)
+for i in range(G.number_of_nodes()):
+    print(f"Node {i}: {G.adjacent_nodes(i)}")
