@@ -23,20 +23,34 @@ def BFS2(G, node1, node2):
 
     final_list = deque([])
     found_path = False
+    current_node = node2
+    num = 0
     while found_path == False:
-        for list in path_dict.values():
-            if node2 in list:
-                final_list.appendleft(node2)
-                key = findKey(path_dict, list)
-            else:
-                return final_list
+        for key in path_dict.keys():
+            if current_node in path_dict[key]:
+                final_list.appendleft(current_node)
+                current_node = key
+                if current_node in G.adj[node1]:
+                    final_list.appendleft(current_node)
+                    final_list.appendleft(node1)
+                    return final_list
 
-def findKey(path_dict, list):
-    for key in path_dict.keys():
-        if path_dict[key] == list:
-            return key
-
-'''
-t = ("hi","ho")
-print(t[1])
-'''
+g = graph.Graph(13)
+g.add_edge(2, 1)
+g.add_edge(2, 3)
+g.add_edge(2, 4)
+g.add_edge(1, 3)
+g.add_edge(1, 9)
+g.add_edge(1, 10)
+g.add_edge(3, 4)
+g.add_edge(3, 5)
+g.add_edge(4, 5)
+g.add_edge(4, 6)
+g.add_edge(5, 8)
+g.add_edge(6, 7)
+g.add_edge(9, 11)
+g.add_edge(9, 12)
+g.add_edge(10, 13)
+g.add_edge(11, 12)
+print(g.adj)
+print(BFS2(g, 2, 8))
