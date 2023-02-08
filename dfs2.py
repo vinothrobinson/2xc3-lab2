@@ -3,6 +3,10 @@ import graph
 
 # ------ DFS2 -----------------
 def DFS2(G, node1, node2):
+    if node1 == node2: # Edge Case, node1 is not connected to itself
+        return []
+    if node2 in G.adj[node1]: # Edge Case, node 1 is directly connected to node 2
+        return [node1, node2]
     S = [node1]
     marked = {}
     for node in G.adj:
@@ -44,5 +48,5 @@ g.add_edge(9, 11)
 g.add_edge(9, 12)
 g.add_edge(10, 13)
 g.add_edge(11, 12)
-print(DFS2(g, 2, 0))
+print(DFS2(g, 2, 1))
 """
