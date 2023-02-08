@@ -65,12 +65,7 @@ def create_random_graph(i, j):
     G = Graph(i)
     for _ in range(j):
         node1, node2 = random.randint(0, i-1), random.randint(0, i-1)
-        while node2 in G.adjacent_nodes(node1):
+        while node1 == node2 or node2 in G.adjacent_nodes(node1):
             node1, node2 = random.randint(0, i-1), random.randint(0, i-1)
         G.add_edge(node1, node2)
     return G
-
-
-G = create_random_graph(10, 5)
-for i in range(G.number_of_nodes()):
-    print(f"Node {i}: {G.adjacent_nodes(i)}")
