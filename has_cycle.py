@@ -8,7 +8,7 @@ def has_cycle(G):
     for i in range(G.number_of_nodes()):
         stack = [i]
         on_stack[i] = True
-        if marked[i] == False:
+        if not marked[i]:
             while len(stack) != 0:
                 current_node = stack.pop()
                 on_stack[current_node] = False

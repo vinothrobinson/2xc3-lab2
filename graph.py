@@ -7,7 +7,7 @@ class Graph:
     def __init__(self, n):
         self.adj = {}
         for i in range(n):
-            self.adj[i+1] = []
+            self.adj[i] = []
 
     def are_connected(self, node1, node2):
         return node2 in self.adj[node1]
