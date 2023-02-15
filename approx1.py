@@ -13,11 +13,14 @@ def approx1(G):
             if len(G2.adj[node]) == max_len and node not in C:
                 highest_degree = node
         C.add(highest_degree)
-        for node in G2.adj:
-            if highest_degree in G2.adj[node]:
-                G2.adj[node].pop(G2.adj[node].index(highest_degree))
-        G2.adj.pop(highest_degree)
+        remove_node(G2, highest_degree)
     return C
+
+def remove_node(G, n):
+    G.adj.pop(n)
+    for node in G.adj.keys():
+        if n in G.adj[node]:
+            G.adj[node].remove(n)
 
 g = graph.Graph(5)
 g.add_edge(0, 1)
