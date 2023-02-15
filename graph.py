@@ -94,6 +94,9 @@ def MVC(G):
 
 
 def create_random_graph(i, j):
+    if j > triangle(i-1):
+        print("Number of edges too large")
+    j = triangle(i-1)
     G = Graph(i)
     for _ in range(j):
         node1, node2 = random.randint(0, i-1), random.randint(0, i-1)
