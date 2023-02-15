@@ -2,11 +2,11 @@ from collections import deque
 import graph
 
 def is_connected(G):
-    node1 = 0
-    Q = deque([node1])
-    marked = {node1: True}
+    start_node = 0
+    Q = deque([start_node])
+    marked = {start_node: True}
     for node in G.adj:
-        if node != node1:
+        if node != start_node:
             marked[node] = False
     while len(Q) != 0:
         current_node = Q.popleft()
