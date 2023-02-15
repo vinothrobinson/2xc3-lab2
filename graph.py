@@ -101,3 +101,11 @@ def create_random_graph(i, j):
             node1, node2 = random.randint(0, i-1), random.randint(0, i-1)
         G.add_edge(node1, node2)
     return G
+
+
+def triangle(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return n + triangle(n-1)
