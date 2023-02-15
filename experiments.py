@@ -14,11 +14,11 @@ def experiment1(node_num, trial_num):
             # Run Experiment
             if has_cycle.has_cycle(G):
                 cycle_count += 1
-        cycle_percentage.append(cycle_count / trial_num)
+        cycle_percentage.append(100 * cycle_count / trial_num)
     plot.plot(cycle_percentage)
     plot.title(f"Cycle Detection: Number of Edges vs Cycle Percentage (|V| = {node_num})")
     plot.xlabel("Number of Nodes")
-    plot.ylabel("Cycle Percentage")
+    plot.ylabel("Cycle Percentage (%)")
     plot.show()
 
 
