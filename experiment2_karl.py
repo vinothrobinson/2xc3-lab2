@@ -21,3 +21,13 @@ def experiment2(n):
     plot.xlabel("Number of Edges")
     plot.ylabel("Connectedness (%)")
     plot.show()
+
+G = graph.Graph(6)
+G.add_edge(0, 1)
+G.add_edge(1, 3)
+G.add_edge(0, 2)
+G.add_edge(2, 3)
+G.add_edge(2, 4)
+G.add_edge(3, 4)
+G.add_edge(3, 5)
+print(graph.is_vertex_cover(G, [2, 4, 3, 1]))
