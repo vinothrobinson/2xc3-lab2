@@ -16,13 +16,8 @@ def experiment2(n):
             if bool:
                 true_num += 1
         total_list.append(true_num/trial_num*100)
-    return total_list
-
-def graph_exp2():
-    plot.plot(experiment2(10))
+    plot.plot(total_list)
     plot.title("Number of Edges vs Connectedness")
     plot.xlabel("Number of Edges")
     plot.ylabel("Connectedness (%)")
     plot.show()
-
-graph_exp2()
