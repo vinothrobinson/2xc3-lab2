@@ -19,9 +19,9 @@ def is_connected(G):
             return False
     return True
 
-g = graph.Graph(4)
-g.add_edge(0, 1)
-g.add_edge(1, 2)
-g.add_edge(2, 3)
-print(g.adj)
-print(is_connected(g))
+# g = graph.Graph(4)
+# g.add_edge(0, 1)
+# g.add_edge(1, 2)
+# g.add_edge(2, 3)
+# print(g.adj)
+# print(is_connected(g))

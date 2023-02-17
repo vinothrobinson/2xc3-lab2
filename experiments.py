@@ -2,6 +2,7 @@ import matplotlib.pyplot as plot
 import graph
 import has_cycle
 import is_connected
+import indep_set
 
 
 def experiment1(node_num, trial_num):
@@ -41,10 +42,22 @@ def experiment2(node_num, trial_num):
     plot.ylabel("Connected Percentage (%)")
     plot.show()
 
-'''experiment1(5, 100)
-experiment1(10, 100)
-experiment1(15, 100)
-experiment1(20, 100)
-experiment1(30, 100)'''
 
-experiment2(10, 100)
+def experiment_last(node_num, trial_num):
+    G = graph.create_random_graph(10, 44)
+    C = graph.MVC(G)
+    I = indep_set.MIS(G)
+    print(f"G  : {G.adj}")
+    print(f"MVC: {C}")
+    print(f"MIS: {I}")
+
+
+# experiment1(5, 100)
+# experiment1(10, 100)
+# experiment1(15, 100)
+# experiment1(20, 100)
+# experiment1(30, 100)
+
+# experiment2(10, 100)
+
+experiment_last(10, 100)
