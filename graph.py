@@ -107,7 +107,7 @@ def create_random_graph(i, j):
 
 
 def triangle(n):
-    if n == 0:
+    if n <= 0:
         return 0
     if n == 1:
         return 1

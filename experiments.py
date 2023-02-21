@@ -6,9 +6,18 @@ import indep_set
 
 
 def experiment1(node_num, trial_num):
+    cycle_percentage = experiment1_data(node_num, trial_num)
+    plot.plot(cycle_percentage)
+    plot.title(f"Cycle Detection: Number of Edges vs Cycle Percentage (|V| = {node_num})")
+    plot.xlabel("Number of Edges")
+    plot.ylabel("Cycle Percentage (%)")
+    plot.show()
+
+
+def experiment1_data(node_num, trial_num):
     cycle_percentage = []
-    max_edge_num = graph.triangle(node_num - 1)
-    for edge_num in range(max_edge_num+1):
+    max_edge_num = min(node_num, graph.triangle(node_num - 1))
+    for edge_num in range(max_edge_num + 1):
         cycle_count = 0
         for _ in range(trial_num):
             G = graph.create_random_graph(node_num, edge_num)
@@ -17,11 +26,23 @@ def experiment1(node_num, trial_num):
             if has_cycle.has_cycle(G):
                 cycle_count += 1
         cycle_percentage.append(100 * cycle_count / trial_num)
-    plot.plot(cycle_percentage)
-    plot.title(f"Cycle Detection: Number of Edges vs Cycle Percentage (|V| = {node_num})")
+    return cycle_percentage
+
+def experiment1_heatmap(max_node_num, trial_num):
+    cycle_matrix = []
+    for node_num in range(max_node_num):
+        print(f"Running for node_num={node_num}")
+        cycle_percentage = experiment1_data(node_num, trial_num) + [100 for _ in range(max_node_num - min(node_num, graph.triangle(node_num - 1)))]
+        cycle_matrix.append(cycle_percentage)
+
+    plot.imshow(cycle_matrix, interpolation='gaussian', vmin=0, vmax=100)
+    plot.title(f"Cycle Detection: Number of Nodes and Edges vs Cycle Percentage", pad=20)
     plot.xlabel("Number of Edges")
-    plot.ylabel("Cycle Percentage (%)")
+    plot.ylabel("Number of Nodes")
+    cbar = plot.colorbar()
+    cbar.set_label("Cycle Percentage (%)")
     plot.show()
+
 
 def experiment2(node_num, trial_num):
     total_list = []
@@ -57,7 +78,8 @@ def experiment_last(node_num, trial_num):
 # experiment1(15, 100)
 # experiment1(20, 100)
 # experiment1(30, 100)
+experiment1_heatmap(30, 500)
 
 # experiment2(10, 100)
 
-experiment_last(10, 100)
+# experiment_last(10, 100)
