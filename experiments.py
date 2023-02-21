@@ -45,6 +45,15 @@ def experiment1_heatmap(max_node_num, trial_num):
 
 
 def experiment2(node_num, trial_num):
+    total_list = experiment2_data(node_num, trial_num)
+    plot.plot(total_list)
+    plot.title("Number of Edges vs Connected Percentage")
+    plot.xlabel("Number of Edges")
+    plot.ylabel("Connected Percentage (%)")
+    plot.show()
+
+
+def experiment2_data(node_num, trial_num):
     total_list = []
     tri_num = graph.triangle(node_num-1)
     for num_of_edges in range(tri_num+1):
@@ -57,10 +66,23 @@ def experiment2(node_num, trial_num):
             if bool:
                 true_num += 1
         total_list.append(true_num/trial_num*100)
-    plot.plot(total_list)
-    plot.title("Number of Edges vs Connected Percentage")
+    return total_list
+
+
+def experiment2_heatmap(max_node_num, trial_num):
+    cycle_matrix = [[100 for i in range(graph.triangle(max_node_num-1)+1)]]
+    for node_num in range(1, max_node_num):
+        print(f"Running for node_num={node_num}")
+        cycle_percentage = experiment2_data(node_num, trial_num) + [100 for _ in range(graph.triangle(max_node_num-1) - graph.triangle(node_num-1))]
+        cycle_matrix.append(cycle_percentage)
+
+    plot.imshow(cycle_matrix, interpolation='gaussian', vmin=0, vmax=100)
+    plot.title(f"Cycle Detection: Number of Nodes and Edges vs Connected Percentage", pad=10)
     plot.xlabel("Number of Edges")
-    plot.ylabel("Connected Percentage (%)")
+    plot.ylabel("Number of Nodes", loc='top')
+    cbar = plot.colorbar(location='bottom')
+    cbar.set_label("Connected Percentage (%)")
+    plot.tight_layout()
     plot.show()
 
 
@@ -78,8 +100,9 @@ def experiment_last(node_num, trial_num):
 # experiment1(15, 100)
 # experiment1(20, 100)
 # experiment1(30, 100)
-experiment1_heatmap(30, 500)
+# experiment1_heatmap(30, 500)
 
 # experiment2(10, 100)
 
 # experiment_last(10, 100)
+experiment2_heatmap(30, 1)
