@@ -99,7 +99,7 @@ def experiment3_data(node_num, trial_num):
             vc_sizes[2] += len(vc_approx.approx2(G))
             vc_sizes[3] += len(vc_approx.approx3(G))
         for i in range(4):
-            total_lists[i].append(vc_sizes[i] / trial_num * 100)
+            total_lists[i].append(vc_sizes[i] / trial_num)
     return total_lists
 
 
@@ -138,9 +138,9 @@ def experiment_last(node_num, trial_num):
 #experiment2_heatmap(30, 1)
 
 experiment3(5, 100)
-experiment3(10, 100)
-experiment3(15, 100)
-experiment3(20, 100)
-experiment3(5, 100)
+# experiment3(10, 100)
+# experiment3(15, 100)
+# experiment3(20, 100)
+# experiment3(5, 100)
 
 # experiment_last(10, 100)
