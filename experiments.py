@@ -93,6 +93,7 @@ def experiment3_data(node_num, trial_num):
     for edge_num in range(max_edge_num + 1):
         vc_sizes = [0 for i in range(4)]
         for _ in range(trial_num):
+            print(f"{node_num} nodes, {edge_num} edges, {_}th trial")
             G = graph.create_random_graph(node_num, edge_num)
             vc_sizes[0] += len(graph.MVC(G))
             vc_sizes[1] += len(vc_approx.approx1(G))
@@ -117,6 +118,60 @@ def experiment3(node_num, trial_num):
     plot.show()
 
 
+def experiment3_heatmap(max_node_num, trial_num):
+    total_lists_list = []
+    for node_num in range(max_node_num+1):
+        total_lists_list.append(experiment3_data(node_num, trial_num))
+
+    matrix1 = []
+    for node_num in range(max_node_num+1):
+        total_lists = total_lists_list[node_num]
+        matrix1.append([])
+        for edge_num in range(len(total_lists[0])):
+            matrix1[-1].append(total_lists[1][edge_num] - total_lists[0][edge_num])
+        matrix1[-1] += [0 for _ in range(graph.triangle(max_node_num-1) - graph.triangle(node_num-1))]
+
+    plot.imshow(matrix1, interpolation='gaussian', vmin=0)
+    plot.title(f"Number of Nodes and Edges vs Difference in Size from MVC for Approximation 1", pad=10, wrap=True)
+    plot.xlabel("Number of Edges")
+    plot.ylabel("Number of Nodes", loc='top')
+    cbar = plot.colorbar(location='bottom')
+    cbar.set_label("Difference in Size from MVC")
+    plot.tight_layout()
+    plot.show()
+
+    matrix2 = []
+    for node_num in range(max_node_num+1):
+        total_lists = total_lists_list[node_num]
+        matrix2.append([])
+        for edge_num in range(len(total_lists[0])):
+            matrix2[-1].append(total_lists[2][edge_num] - total_lists[0][edge_num])
+        matrix2[-1] += [0 for _ in range(graph.triangle(max_node_num - 1) - graph.triangle(node_num - 1))]
+    plot.imshow(matrix2, interpolation='gaussian', vmin=0)
+    plot.title(f"Number of Nodes and Edges vs Difference in Size from MVC for Approximation 2", pad=10, wrap=True)
+    plot.xlabel("Number of Edges")
+    plot.ylabel("Number of Nodes", loc='top')
+    cbar = plot.colorbar(location='bottom')
+    cbar.set_label("Difference in Size from MVC")
+    plot.tight_layout()
+    plot.show()
+
+    matrix3 = []
+    for node_num in range(max_node_num + 1):
+        total_lists = total_lists_list[node_num]
+        matrix3.append([])
+        for edge_num in range(len(total_lists[0])):
+            matrix3[-1].append(total_lists[3][edge_num] - total_lists[0][edge_num])
+        matrix3[-1] += [0 for _ in range(graph.triangle(max_node_num - 1) - graph.triangle(node_num - 1))]
+    plot.imshow(matrix3, interpolation='gaussian', vmin=0)
+    plot.title(f"Number of Nodes and Edges vs Difference in Size from MVC for Approximation 3", pad=10, wrap=True)
+    plot.xlabel("Number of Edges")
+    plot.ylabel("Number of Nodes", loc='top')
+    cbar = plot.colorbar(location='bottom')
+    cbar.set_label("Difference in Size from MVC")
+    plot.tight_layout()
+    plot.show()
+
 
 def experiment_last(node_num, trial_num):
     G = graph.create_random_graph(10, 44)
@@ -137,10 +192,9 @@ def experiment_last(node_num, trial_num):
 # experiment2(10, 100)
 #experiment2_heatmap(30, 1)
 
-experiment3(5, 100)
+# experiment3(5, 100)
 # experiment3(10, 100)
 # experiment3(15, 100)
-# experiment3(20, 100)
-# experiment3(5, 100)
+experiment3_heatmap(15, 10)
 
 # experiment_last(10, 100)
