@@ -103,6 +103,6 @@ def experiment_last(node_num, trial_num):
 # experiment1_heatmap(30, 500)
 
 # experiment2(10, 100)
+#experiment2_heatmap(30, 1)
 
 # experiment_last(10, 100)
-experiment2_heatmap(30, 1)
