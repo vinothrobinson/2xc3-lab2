@@ -3,6 +3,7 @@ import graph
 import has_cycle
 import is_connected
 import indep_set
+import vc_approx
 
 
 def experiment1(node_num, trial_num):
@@ -86,6 +87,37 @@ def experiment2_heatmap(max_node_num, trial_num):
     plot.show()
 
 
+def experiment3_data(node_num, trial_num):
+    total_lists = [[] for i in range(4)]
+    max_edge_num = graph.triangle(node_num - 1)
+    for edge_num in range(max_edge_num + 1):
+        vc_sizes = [0 for i in range(4)]
+        for _ in range(trial_num):
+            G = graph.create_random_graph(node_num, edge_num)
+            vc_sizes[0] += len(graph.MVC(G))
+            vc_sizes[1] += len(vc_approx.approx1(G))
+            vc_sizes[2] += len(vc_approx.approx2(G))
+            vc_sizes[3] += len(vc_approx.approx3(G))
+        for i in range(4):
+            total_lists[i].append(vc_sizes[i] / trial_num * 100)
+    return total_lists
+
+
+def experiment3(node_num, trial_num):
+    total_lists = experiment3_data(node_num, trial_num)
+
+    plot.plot(total_lists[0], label="MVC Size")
+    plot.plot(total_lists[1], label="Approximation 1")
+    plot.plot(total_lists[2], label="Approximation 2")
+    plot.plot(total_lists[3], label="Approximation 3")
+    plot.legend()
+    plot.title(f"Number of Edges vs Size of Vertex Cover Approximations (|V| = {node_num}")
+    plot.xlabel("Number of Edges")
+    plot.ylabel("Size of Vertex Cover Approximations")
+    plot.show()
+
+
+
 def experiment_last(node_num, trial_num):
     G = graph.create_random_graph(10, 44)
     C = graph.MVC(G)
@@ -104,5 +136,11 @@ def experiment_last(node_num, trial_num):
 
 # experiment2(10, 100)
 #experiment2_heatmap(30, 1)
+
+experiment3(5, 100)
+experiment3(10, 100)
+experiment3(15, 100)
+experiment3(20, 100)
+experiment3(5, 100)
 
 # experiment_last(10, 100)
