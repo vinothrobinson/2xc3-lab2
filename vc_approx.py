@@ -1,14 +1,15 @@
 import graph
 import random
 
-
+# --------------------- Remove Node Function -------------------------
 def remove_node(G, n):
     G.adj.pop(n)
     for node in G.adj.keys():
         if n in G.adj[node]:
             G.adj[node].remove(n)
 
-
+# --------------------- Approx() Function Variations -------------------------
+# Approx1 Function
 def approx1(G):
     C = set()
     G2 = graph.graph_copy(G)
@@ -23,8 +24,7 @@ def approx1(G):
         C.add(highest_degree)
         remove_node(G2, highest_degree)
     return C
-
-
+    
 # Aprrox2 Function
 def approx2(G):
     C = set()
@@ -34,7 +34,7 @@ def approx2(G):
         C.add(random_node)
     return C
 
-
+# Aprrox3 Function
 def approx3(G):
     Gp = graph.graph_copy(G)
     Cover = set()

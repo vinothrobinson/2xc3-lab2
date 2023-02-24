@@ -1,7 +1,7 @@
 from collections import deque
 import graph
 
-
+# --------------------- DFS Variations -------------------------
 def DFS2(G, node1, node2):
     if node1 == node2: # Edge Case, node1 is not connected to itself
         return []
@@ -48,7 +48,7 @@ def DFS3(G, node1):
                     S.append(node)
     return tracking
 
-
+# --------------------- BFS Variations -------------------------
 def BFS2(G, node1, node2):
     if node1 == node2:
         return []

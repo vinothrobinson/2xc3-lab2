@@ -5,7 +5,7 @@ import is_connected
 import indep_set
 import vc_approx
 
-
+# --------------------- Experiment 1 -------------------------
 def experiment1(node_num, trial_num):
     cycle_percentage = experiment1_data(node_num, trial_num)
     plot.plot(cycle_percentage)
@@ -44,7 +44,7 @@ def experiment1_heatmap(max_node_num, trial_num):
     cbar.set_label("Cycle Percentage (%)")
     plot.show()
 
-
+# --------------------- Experiment 2 -------------------------
 def experiment2(node_num, trial_num):
     total_list = experiment2_data(node_num, trial_num)
     plot.plot(total_list)
@@ -86,7 +86,7 @@ def experiment2_heatmap(max_node_num, trial_num):
     plot.tight_layout()
     plot.show()
 
-
+# --------------------- Experiment 3 -------------------------
 def experiment3_data(node_num, trial_num):
     total_lists = [[] for i in range(4)]
     max_edge_num = graph.triangle(node_num - 1)
@@ -172,7 +172,7 @@ def experiment3_heatmap(max_node_num, trial_num):
     plot.tight_layout()
     plot.show()
 
-
+# --------------------- Experiment 4 -------------------------
 def experiment4(node_num):
     print(f"------------------------------------------------------")
     tri_num = graph.triangle(node_num-1)
@@ -189,7 +189,7 @@ def experiment4(node_num):
         print(f"Length of the MVC + MIS: {str(len(C) + len(I))}")
         print(f"------------------------------------------------------")
 
-
+# --------------------- Experiment 1 Test Cases -------------------------
 # experiment1(5, 100)
 # experiment1(10, 100)
 # experiment1(15, 100)
@@ -197,12 +197,19 @@ def experiment4(node_num):
 # experiment1(30, 100)
 # experiment1_heatmap(30, 500)
 
+# --------------------- Experiment 2 Test Cases -------------------------
+# experiment2(5, 100)
 # experiment2(10, 100)
+# experiment2(15, 100)
+# experiment2(20, 100)
+# experiment2(30, 100)
 # experiment2_heatmap(30, 1)
 
+# --------------------- Experiment 3 Test Cases -------------------------
 # experiment3(5, 100)
 # experiment3(10, 100)
 # experiment3(15, 100)
 # experiment3_heatmap(15, 10)
 
+# --------------------- Experiment 4 Test Cases -------------------------
 experiment4(5)

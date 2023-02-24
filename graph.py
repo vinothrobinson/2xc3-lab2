@@ -1,6 +1,6 @@
 from collections import deque
 import random
-
+# --------------------- Part 1 Functions -------------------------
 #Undirected graph using an adjacency list
 class Graph:
 
@@ -62,7 +62,7 @@ def DFS(G, node1, node2):
     return False
 
 
-#Use the methods below to determine minimum vertex covers
+# --------------------- Part 2 Functions -------------------------
 
 def add_to_each(sets, element):
     copy = sets.copy()
@@ -92,7 +92,7 @@ def MVC(G):
                 min_cover = subset
     return min_cover
 
-
+# --------------------- Create Random Graph Function -------------------------
 def create_random_graph(i, j):
     if j > triangle(i-1):
         print("Number of edges too large")
@@ -105,7 +105,7 @@ def create_random_graph(i, j):
         G.add_edge(node1, node2)
     return G
 
-
+# --------------------- Calculating Max Number Of Edges -------------------------
 def triangle(n):
     if n <= 0:
         return 0
@@ -113,7 +113,7 @@ def triangle(n):
         return 1
     return n + triangle(n-1)
 
-
+# --------------------- Copy Graph Function -------------------------
 def graph_copy(G):
     Gp = Graph(G.number_of_nodes())
     for n1 in G.adj.keys():
