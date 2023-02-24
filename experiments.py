@@ -173,13 +173,32 @@ def experiment3_heatmap(max_node_num, trial_num):
     plot.show()
 
 
-def experiment_last(node_num, trial_num):
-    G = graph.create_random_graph(10, 44)
-    C = graph.MVC(G)
-    I = indep_set.MIS(G)
-    print(f"G  : {G.adj}")
-    print(f"MVC: {C}")
-    print(f"MIS: {I}")
+def experiment_last(node_num):
+    disjoint = 0
+    tri_num = graph.triangle(node_num-1)
+    for num_of_edges in range(tri_num+1):
+        G = graph.create_random_graph(node_num, num_of_edges)
+        C = graph.MVC(G)
+        I = indep_set.MIS(G)
+        print(f"G has {G.number_of_nodes()} nodes and {num_of_edges} edges")
+        print(f"MVC: {C}")
+        print(f"MIS: {I}")
+        print(f"Number of nodes in G   : {str(G.number_of_nodes())}")
+        print(f"Length of MVC          : {str(len(C))}")
+        print(f"Length of MIS          : {str(len(I))}")
+        print(f"Length of the MVC + MIS: {str(len(C) + len(I))}")
+        print(f"------------------------------------------------------")
+        bool = True
+        for i in C:
+            if i in I:
+                bool = False
+        for i in I:
+            if i in C:
+                bool = False
+        if bool:
+            disjoint += 1
+    print(disjoint)
+
 
 
 # experiment1(5, 100)
@@ -190,11 +209,11 @@ def experiment_last(node_num, trial_num):
 # experiment1_heatmap(30, 500)
 
 # experiment2(10, 100)
-#experiment2_heatmap(30, 1)
+# experiment2_heatmap(30, 1)
 
 # experiment3(5, 100)
 # experiment3(10, 100)
 # experiment3(15, 100)
-experiment3_heatmap(15, 10)
+# experiment3_heatmap(15, 10)
 
-# experiment_last(10, 100)
+experiment_last(10)
