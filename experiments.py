@@ -205,4 +205,4 @@ def experiment4(node_num):
 # experiment3(15, 100)
 # experiment3_heatmap(15, 10)
 
-experiment4(10)
+experiment4(5)
