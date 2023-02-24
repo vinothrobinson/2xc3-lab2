@@ -15,9 +15,13 @@ def experiment1(node_num, trial_num):
     plot.show()
 
 
-def experiment1_data(node_num, trial_num):
+def experiment1_data(node_num, trial_num, optimize=False):
     cycle_percentage = []
-    max_edge_num = min(node_num, graph.triangle(node_num - 1))
+    if optimize:
+        max_edge_num = min(node_num, graph.triangle(node_num - 1))
+    else:
+        max_edge_num = graph.triangle(node_num - 1)
+
     for edge_num in range(max_edge_num + 1):
         cycle_count = 0
         for _ in range(trial_num):
@@ -33,7 +37,7 @@ def experiment1_heatmap(max_node_num, trial_num):
     cycle_matrix = []
     for node_num in range(max_node_num):
         print(f"Running for node_num={node_num}")
-        cycle_percentage = experiment1_data(node_num, trial_num) + [100 for _ in range(max_node_num - min(node_num, graph.triangle(node_num - 1)))]
+        cycle_percentage = experiment1_data(node_num, trial_num, optimize=True) + [100 for _ in range(max_node_num - min(node_num, graph.triangle(node_num - 1)))]
         cycle_matrix.append(cycle_percentage)
 
     plot.imshow(cycle_matrix, interpolation='gaussian', vmin=0, vmax=100)
@@ -212,4 +216,4 @@ def experiment4(node_num):
 # experiment3_heatmap(15, 10)
 
 # --------------------- Experiment 4 Test Cases -------------------------
-experiment4(5)
+# experiment4(5)
