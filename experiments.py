@@ -212,4 +212,6 @@ def experiment4(node_num):
 # experiment3_heatmap(15, 10)
 
 # --------------------- Experiment 4 Test Cases -------------------------
-experiment4(5)
+# experiment4(5)
+# experiment4(10)
+# experiment4(15)
