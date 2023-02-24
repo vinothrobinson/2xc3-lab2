@@ -173,8 +173,8 @@ def experiment3_heatmap(max_node_num, trial_num):
     plot.show()
 
 
-def experiment_last(node_num):
-    disjoint = 0
+def experiment4(node_num):
+    print(f"------------------------------------------------------")
     tri_num = graph.triangle(node_num-1)
     for num_of_edges in range(tri_num+1):
         G = graph.create_random_graph(node_num, num_of_edges)
@@ -188,17 +188,6 @@ def experiment_last(node_num):
         print(f"Length of MIS          : {str(len(I))}")
         print(f"Length of the MVC + MIS: {str(len(C) + len(I))}")
         print(f"------------------------------------------------------")
-        bool = True
-        for i in C:
-            if i in I:
-                bool = False
-        for i in I:
-            if i in C:
-                bool = False
-        if bool:
-            disjoint += 1
-    print(disjoint)
-
 
 
 # experiment1(5, 100)
@@ -216,4 +205,4 @@ def experiment_last(node_num):
 # experiment3(15, 100)
 # experiment3_heatmap(15, 10)
 
-experiment_last(10)
+experiment4(10)
